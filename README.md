@@ -153,7 +153,7 @@ Data bahan disimpan sementara menggunakan `DefaultTableModel` selama aplikasi be
 
 ### A. Halaman Awal
 
-![Halaman Awal](screenshot-cafestock/halamanAwal.png)
+![Halaman Awal](halamanAwal.png)
 
 ### B. Pengurangan Stok
 

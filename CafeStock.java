@@ -21,14 +21,12 @@ public class CafeStock extends JFrame implements ActionListener, MouseListener {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        // Panel utama
         JPanel panelUtama = new JPanel(new BorderLayout(10, 10));
         panelUtama.setBorder(
             BorderFactory.createEmptyBorder(15, 15, 15, 15)
         );
         panelUtama.setBackground(new Color(250, 240, 220));
 
-        // Judul aplikasi
         JPanel panelJudul = new JPanel(
             new FlowLayout(FlowLayout.LEFT)
         );
@@ -39,7 +37,6 @@ public class CafeStock extends JFrame implements ActionListener, MouseListener {
         lblJudul.setForeground(Color.WHITE);
         panelJudul.add(lblJudul);
 
-        // Form data bahan
         JPanel panelForm = new JPanel(new GridLayout(4, 2, 8, 8));
         panelForm.setBorder(
             BorderFactory.createTitledBorder("Data Bahan")
@@ -69,7 +66,6 @@ public class CafeStock extends JFrame implements ActionListener, MouseListener {
         panelForm.add(lblMinimum);
         panelForm.add(txtMinimum);
 
-        // Tombol form
         btnTambah = new JButton("Tambah Bahan");
         btnReset = new JButton("Reset");
 
@@ -83,7 +79,6 @@ public class CafeStock extends JFrame implements ActionListener, MouseListener {
         panelAtas.add(panelForm, BorderLayout.CENTER);
         panelAtas.add(panelTombolForm, BorderLayout.SOUTH);
 
-        // Tabel daftar stok
         String[] kolom = {
             "Nama Bahan", "Kategori", "Stok",
             "Batas Minimum", "Status"
@@ -99,7 +94,6 @@ public class CafeStock extends JFrame implements ActionListener, MouseListener {
             BorderFactory.createTitledBorder("Daftar Stok")
         );
 
-        // Tombol pengelolaan stok
         btnTambahStok = new JButton("Tambah Stok");
         btnKurangiStok = new JButton("Kurangi Stok");
         btnHapus = new JButton("Hapus Bahan");
@@ -114,19 +108,16 @@ public class CafeStock extends JFrame implements ActionListener, MouseListener {
         panelTabel.add(scroll, BorderLayout.CENTER);
         panelTabel.add(panelAksi, BorderLayout.SOUTH);
 
-        // Panel isi: form di atas dan tabel di bawah
         JPanel panelIsi = new JPanel(new BorderLayout(10, 10));
         panelIsi.setBackground(new Color(250, 240, 220));
         panelIsi.add(panelAtas, BorderLayout.NORTH);
         panelIsi.add(panelTabel, BorderLayout.CENTER);
 
-        // Susunan tampilan utama
         panelUtama.add(panelJudul, BorderLayout.NORTH);
         panelUtama.add(panelIsi, BorderLayout.CENTER);
 
         add(panelUtama);
 
-        // Event handling tombol
         btnTambah.addActionListener(this);
         btnReset.addActionListener(this);
         btnTambahStok.addActionListener(this);
@@ -139,7 +130,6 @@ public class CafeStock extends JFrame implements ActionListener, MouseListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        // Menambahkan bahan
         if (e.getSource() == btnTambah) {
             String nama = txtNama.getText().trim();
             String stokText = txtStok.getText().trim();
@@ -187,7 +177,6 @@ public class CafeStock extends JFrame implements ActionListener, MouseListener {
             }
         }
 
-        // Mengosongkan form
         else if (e.getSource() == btnReset) {
             txtNama.setText("");
             txtStok.setText("");
@@ -195,7 +184,6 @@ public class CafeStock extends JFrame implements ActionListener, MouseListener {
             cmbKategori.setSelectedIndex(0);
         }
 
-        // Menambah stok bahan
         else if (e.getSource() == btnTambahStok) {
             int baris = tabel.getSelectedRow();
 
@@ -233,7 +221,6 @@ public class CafeStock extends JFrame implements ActionListener, MouseListener {
             }
         }
 
-        // Mengurangi stok bahan
         else if (e.getSource() == btnKurangiStok) {
             int baris = tabel.getSelectedRow();
 
@@ -271,7 +258,6 @@ public class CafeStock extends JFrame implements ActionListener, MouseListener {
             }
         }
 
-        // Menghapus bahan
         else if (e.getSource() == btnHapus) {
             int baris = tabel.getSelectedRow();
 
@@ -288,7 +274,6 @@ public class CafeStock extends JFrame implements ActionListener, MouseListener {
         }
     }
 
-    // Memperbarui status stok
     private void perbaruiStatus(int baris) {
         int stok = Integer.parseInt(
             model.getValueAt(baris, 2).toString()
@@ -304,7 +289,6 @@ public class CafeStock extends JFrame implements ActionListener, MouseListener {
         }
     }
 
-    // Event saat baris tabel diklik
     @Override
     public void mouseClicked(MouseEvent e) {
         int baris = tabel.getSelectedRow();

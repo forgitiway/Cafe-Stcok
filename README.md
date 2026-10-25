@@ -118,19 +118,15 @@ Method `mouseClicked()` digunakan untuk menangani kejadian ketika baris tabel di
 
 ## 8. Struktur Proyek
 
-```text
 Cafe-Stock/
-├── screenshot cafestock/
-│   ├── halamanAwal.png
-│   ├── kurangiStok.png
-│   ├── statusBahan.png
-│   └── validasiStok.png
 ├── CafeStock.java
-└── README.md
-```
+├── halamanAwal.png
+├── kurangiStok.png
+├── README.md
+├── statusBahan.png
+└── validasiStok.png
 
 Keterangan:
-- `screenshot cafestock/` merupakan folder yang berisi dokumentasi screenshot aplikasi.
 - `halamanAwal.png` menampilkan tampilan awal aplikasi CafeStock.
 - `kurangiStok.png` menampilkan proses pengurangan stok bahan.
 - `statusBahan.png` menampilkan status persediaan bahan.
@@ -157,12 +153,12 @@ Data bahan disimpan sementara menggunakan `DefaultTableModel` selama aplikasi be
 
 ### B. Pengurangan Stok
 
-![Pengurangan Stok](screenshot-cafestock/kurangiStok.png)
+![Pengurangan Stok](kurangiStok.png)
 
 ### C. Status Bahan
 
-![Status Bahan](screenshot-cafestock/statusBahan.png)
+![Status Bahan](statusBahan.png)
 
 ### D. Validasi Stok
 
-![Validasi Stok](screenshot-cafestock/validasiStok.png)
+![Validasi Stok](validasiStok.png)

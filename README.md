@@ -153,18 +153,16 @@ Data bahan disimpan sementara menggunakan `DefaultTableModel` selama aplikasi be
 
 ### A. Halaman Awal
 
-(<screenshot cafestock/halamanAwal.png>)
+![Halaman Awal](screenshot-cafestock/halamanAwal.png)
 
 ### B. Pengurangan Stok
 
-![Pengurangan Stok](<screenshot cafestock/kurangiStok.png>)
+![Pengurangan Stok](screenshot-cafestock/kurangiStok.png)
 
 ### C. Status Bahan
 
-![Status Bahan](<screenshot cafestock/statusBahan.png>)
+![Status Bahan](screenshot-cafestock/statusBahan.png)
 
 ### D. Validasi Stok
 
-![Validasi Stok](<screenshot cafestock/validasiStok.png>)
-
-
+![Validasi Stok](screenshot-cafestock/validasiStok.png)

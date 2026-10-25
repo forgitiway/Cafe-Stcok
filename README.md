@@ -135,12 +135,6 @@ Keterangan:
 - `README.md` berisi dokumentasi aplikasi CafeStock.
 
 
-Keterangan:
-
-- `CafeStock.java` berisi kode program aplikasi.
-- `README.md` berisi dokumentasi aplikasi.
-- `cafestock.png` berisi screenshot tampilan aplikasi.
-
 ## 9. Penyimpanan Data
 
 Data bahan disimpan sementara menggunakan `DefaultTableModel` selama aplikasi berjalan. Data tidak disimpan secara permanen ke database atau file, sehingga data akan hilang ketika aplikasi ditutup.

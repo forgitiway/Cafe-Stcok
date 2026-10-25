@@ -151,9 +151,20 @@ Data bahan disimpan sementara menggunakan `DefaultTableModel` selama aplikasi be
 
 ## 10. Dokumentasi Screenshot
 
-### Tampilan Utama CafeStock
+### A. Halaman Awal
 
-Screenshot berikut memperlihatkan tampilan aplikasi CafeStock setelah dijalankan.
+![Halaman Awal CafeStock](<screenshot cafestock/halamanAwal.png>)
 
-![Tampilan Utama CafeStock](halamanAwal.png)
+### B. Pengurangan Stok
+
+![Pengurangan Stok](<screenshot cafestock/kurangiStok.png>)
+
+### C. Status Bahan
+
+![Status Bahan](<screenshot cafestock/statusBahan.png>)
+
+### D. Validasi Stok
+
+![Validasi Stok](<screenshot cafestock/validasiStok.png>)
+
 

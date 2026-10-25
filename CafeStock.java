@@ -21,11 +21,17 @@ public class CafeStock extends JFrame implements ActionListener, MouseListener {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
+        // Panel utama
         JPanel panelUtama = new JPanel(new BorderLayout(10, 10));
-        panelUtama.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
+        panelUtama.setBorder(
+            BorderFactory.createEmptyBorder(15, 15, 15, 15)
+        );
         panelUtama.setBackground(new Color(250, 240, 220));
 
-        JPanel panelJudul = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        // Judul aplikasi
+        JPanel panelJudul = new JPanel(
+            new FlowLayout(FlowLayout.LEFT)
+        );
         panelJudul.setBackground(new Color(110, 70, 40));
 
         JLabel lblJudul = new JLabel("CafeStock");
@@ -33,17 +39,20 @@ public class CafeStock extends JFrame implements ActionListener, MouseListener {
         lblJudul.setForeground(Color.WHITE);
         panelJudul.add(lblJudul);
 
-        panelUtama.add(panelJudul, BorderLayout.NORTH);
-
+        // Form data bahan
         JPanel panelForm = new JPanel(new GridLayout(4, 2, 8, 8));
-        panelForm.setBorder(BorderFactory.createTitledBorder("Data Bahan"));
+        panelForm.setBorder(
+            BorderFactory.createTitledBorder("Data Bahan")
+        );
         panelForm.setBackground(Color.WHITE);
 
         lblNama = new JLabel("Nama Bahan");
         txtNama = new JTextField();
 
         lblKategori = new JLabel("Kategori");
-        cmbKategori = new JComboBox<>(new String[]{"Kopi", "Susu", "Sirup", "Teh", "Topping", "Lainnya"});
+        cmbKategori = new JComboBox<>(new String[]{
+            "Kopi", "Susu", "Sirup", "Teh", "Topping", "Lainnya"
+        });
 
         lblStok = new JLabel("Jumlah Stok");
         txtStok = new JTextField();
@@ -60,6 +69,7 @@ public class CafeStock extends JFrame implements ActionListener, MouseListener {
         panelForm.add(lblMinimum);
         panelForm.add(txtMinimum);
 
+        // Tombol form
         btnTambah = new JButton("Tambah Bahan");
         btnReset = new JButton("Reset");
 
@@ -68,12 +78,16 @@ public class CafeStock extends JFrame implements ActionListener, MouseListener {
         panelTombolForm.add(btnTambah);
         panelTombolForm.add(btnReset);
 
-        JPanel panelAtas = new JPanel(new BorderLayout());
+        JPanel panelAtas = new JPanel(new BorderLayout(5, 5));
         panelAtas.setBackground(new Color(250, 240, 220));
         panelAtas.add(panelForm, BorderLayout.CENTER);
         panelAtas.add(panelTombolForm, BorderLayout.SOUTH);
 
-        String[] kolom = {"Nama Bahan", "Kategori", "Stok", "Batas Minimum", "Status"};
+        // Tabel daftar stok
+        String[] kolom = {
+            "Nama Bahan", "Kategori", "Stok",
+            "Batas Minimum", "Status"
+        };
 
         model = new DefaultTableModel(kolom, 0);
         tabel = new JTable(model);
@@ -81,8 +95,11 @@ public class CafeStock extends JFrame implements ActionListener, MouseListener {
         tabel.addMouseListener(this);
 
         JScrollPane scroll = new JScrollPane(tabel);
-        scroll.setBorder(BorderFactory.createTitledBorder("Daftar Stok"));
+        scroll.setBorder(
+            BorderFactory.createTitledBorder("Daftar Stok")
+        );
 
+        // Tombol pengelolaan stok
         btnTambahStok = new JButton("Tambah Stok");
         btnKurangiStok = new JButton("Kurangi Stok");
         btnHapus = new JButton("Hapus Bahan");
@@ -93,15 +110,23 @@ public class CafeStock extends JFrame implements ActionListener, MouseListener {
         panelAksi.add(btnKurangiStok);
         panelAksi.add(btnHapus);
 
-        JPanel panelBawah = new JPanel(new BorderLayout());
-        panelBawah.add(scroll, BorderLayout.CENTER);
-        panelBawah.add(panelAksi, BorderLayout.SOUTH);
+        JPanel panelTabel = new JPanel(new BorderLayout(5, 5));
+        panelTabel.add(scroll, BorderLayout.CENTER);
+        panelTabel.add(panelAksi, BorderLayout.SOUTH);
 
-        panelUtama.add(panelAtas, BorderLayout.CENTER);
-        panelUtama.add(panelBawah, BorderLayout.SOUTH);
+        // Panel isi: form di atas dan tabel di bawah
+        JPanel panelIsi = new JPanel(new BorderLayout(10, 10));
+        panelIsi.setBackground(new Color(250, 240, 220));
+        panelIsi.add(panelAtas, BorderLayout.NORTH);
+        panelIsi.add(panelTabel, BorderLayout.CENTER);
+
+        // Susunan tampilan utama
+        panelUtama.add(panelJudul, BorderLayout.NORTH);
+        panelUtama.add(panelIsi, BorderLayout.CENTER);
 
         add(panelUtama);
 
+        // Event handling tombol
         btnTambah.addActionListener(this);
         btnReset.addActionListener(this);
         btnTambahStok.addActionListener(this);
@@ -114,13 +139,16 @@ public class CafeStock extends JFrame implements ActionListener, MouseListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
+        // Menambahkan bahan
         if (e.getSource() == btnTambah) {
-            String nama = txtNama.getText();
-            String stokText = txtStok.getText();
-            String minimumText = txtMinimum.getText();
+            String nama = txtNama.getText().trim();
+            String stokText = txtStok.getText().trim();
+            String minimumText = txtMinimum.getText().trim();
 
-            if (nama.isEmpty() || stokText.isEmpty() || minimumText.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Semua data harus diisi!");
+            if (nama.isEmpty() || stokText.isEmpty()
+                    || minimumText.isEmpty()) {
+                JOptionPane.showMessageDialog(this,
+                    "Semua data harus diisi!");
                 return;
             }
 
@@ -129,11 +157,13 @@ public class CafeStock extends JFrame implements ActionListener, MouseListener {
                 int minimum = Integer.parseInt(minimumText);
 
                 if (stok < 0 || minimum < 0) {
-                    JOptionPane.showMessageDialog(this, "Stok tidak boleh negatif!");
+                    JOptionPane.showMessageDialog(this,
+                        "Stok dan batas minimum tidak boleh negatif!");
                     return;
                 }
 
-                String kategori = cmbKategori.getSelectedItem().toString();
+                String kategori =
+                    cmbKategori.getSelectedItem().toString();
 
                 String status;
                 if (stok <= minimum) {
@@ -142,11 +172,14 @@ public class CafeStock extends JFrame implements ActionListener, MouseListener {
                     status = "Aman";
                 }
 
-                model.addRow(new Object[]{ nama, kategori, stok, minimum, status});
+                model.addRow(new Object[]{
+                    nama, kategori, stok, minimum, status
+                });
 
                 txtNama.setText("");
                 txtStok.setText("");
                 txtMinimum.setText("");
+                cmbKategori.setSelectedIndex(0);
 
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(this,
@@ -154,6 +187,7 @@ public class CafeStock extends JFrame implements ActionListener, MouseListener {
             }
         }
 
+        // Mengosongkan form
         else if (e.getSource() == btnReset) {
             txtNama.setText("");
             txtStok.setText("");
@@ -161,23 +195,30 @@ public class CafeStock extends JFrame implements ActionListener, MouseListener {
             cmbKategori.setSelectedIndex(0);
         }
 
+        // Menambah stok bahan
         else if (e.getSource() == btnTambahStok) {
             int baris = tabel.getSelectedRow();
 
             if (baris == -1) {
-                JOptionPane.showMessageDialog(this, "Pilih bahan dari tabel terlebih dahulu!");
+                JOptionPane.showMessageDialog(this,
+                    "Pilih bahan dari tabel terlebih dahulu!");
                 return;
             }
 
-            String input = JOptionPane.showInputDialog( this, "Masukkan jumlah stok yang ditambahkan:");
+            String input = JOptionPane.showInputDialog(
+                this, "Masukkan jumlah stok yang ditambahkan:"
+            );
 
             if (input != null) {
                 try {
                     int jumlah = Integer.parseInt(input);
-                    int stok = Integer.parseInt( model.getValueAt(baris, 2).toString());
+                    int stok = Integer.parseInt(
+                        model.getValueAt(baris, 2).toString()
+                    );
 
                     if (jumlah <= 0) {
-                        JOptionPane.showMessageDialog(this, "Jumlah harus lebih dari 0!");
+                        JOptionPane.showMessageDialog(this,
+                            "Jumlah harus lebih dari 0!");
                         return;
                     }
 
@@ -186,16 +227,19 @@ public class CafeStock extends JFrame implements ActionListener, MouseListener {
                     perbaruiStatus(baris);
 
                 } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(this, "Masukkan angka yang benar!");
+                    JOptionPane.showMessageDialog(this,
+                        "Masukkan angka yang benar!");
                 }
             }
         }
 
+        // Mengurangi stok bahan
         else if (e.getSource() == btnKurangiStok) {
             int baris = tabel.getSelectedRow();
 
             if (baris == -1) {
-                JOptionPane.showMessageDialog(this, "Pilih bahan dari tabel terlebih dahulu!");
+                JOptionPane.showMessageDialog(this,
+                    "Pilih bahan dari tabel terlebih dahulu!");
                 return;
             }
 
@@ -211,7 +255,8 @@ public class CafeStock extends JFrame implements ActionListener, MouseListener {
                     );
 
                     if (jumlah <= 0 || jumlah > stok) {
-                        JOptionPane.showMessageDialog(this, "Jumlah tidak valid atau stok tidak cukup!");
+                        JOptionPane.showMessageDialog(this,
+                            "Jumlah tidak valid atau stok tidak cukup!");
                         return;
                     }
 
@@ -220,22 +265,30 @@ public class CafeStock extends JFrame implements ActionListener, MouseListener {
                     perbaruiStatus(baris);
 
                 } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(this, "Masukkan angka yang benar!");
+                    JOptionPane.showMessageDialog(this,
+                        "Masukkan angka yang benar!");
                 }
             }
         }
 
+        // Menghapus bahan
         else if (e.getSource() == btnHapus) {
             int baris = tabel.getSelectedRow();
 
             if (baris == -1) {
-                JOptionPane.showMessageDialog(this, "Pilih bahan yang ingin dihapus!");
+                JOptionPane.showMessageDialog(this,
+                    "Pilih bahan yang ingin dihapus!");
             } else {
                 model.removeRow(baris);
+                txtNama.setText("");
+                txtStok.setText("");
+                txtMinimum.setText("");
+                cmbKategori.setSelectedIndex(0);
             }
         }
     }
 
+    // Memperbarui status stok
     private void perbaruiStatus(int baris) {
         int stok = Integer.parseInt(
             model.getValueAt(baris, 2).toString()
@@ -250,32 +303,43 @@ public class CafeStock extends JFrame implements ActionListener, MouseListener {
             model.setValueAt("Aman", baris, 4);
         }
     }
-    
+
+    // Event saat baris tabel diklik
     @Override
     public void mouseClicked(MouseEvent e) {
         int baris = tabel.getSelectedRow();
 
         if (baris != -1) {
-            txtNama.setText(model.getValueAt(baris, 0).toString());
+            txtNama.setText(
+                model.getValueAt(baris, 0).toString()
+            );
             cmbKategori.setSelectedItem(
                 model.getValueAt(baris, 1).toString()
             );
-            txtStok.setText(model.getValueAt(baris, 2).toString());
-            txtMinimum.setText(model.getValueAt(baris, 3).toString());
+            txtStok.setText(
+                model.getValueAt(baris, 2).toString()
+            );
+            txtMinimum.setText(
+                model.getValueAt(baris, 3).toString()
+            );
         }
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {}
+    public void mousePressed(MouseEvent e) {
+    }
 
     @Override
-    public void mouseReleased(MouseEvent e) {}
+    public void mouseReleased(MouseEvent e) {
+    }
 
     @Override
-    public void mouseEntered(MouseEvent e) {}
+    public void mouseEntered(MouseEvent e) {
+    }
 
     @Override
-    public void mouseExited(MouseEvent e) {}
+    public void mouseExited(MouseEvent e) {
+    }
 
     public static void main(String[] args) {
         new CafeStock();
